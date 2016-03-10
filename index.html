@@ -7,15 +7,32 @@
   <script src="js/vue.js"></script>
 </head>
 <body>
+  <header>
+    <ul>
+      <li>
+        <a>Remaining</a>
+      </li>
+      <li>
+        <a>Doing</a>
+      </li>
+      <li>
+        <a>Done</a>
+      </li>
+    </ul>
+  </header>
   <div id="app">
-    <input v-model="newTodo" v-on:keyup.enter="addTodo">
+    <input v-model="newTodo" v-on:keyup.enter="addTask">
     <ul>
       <li v-for="todo in todos">
-        <span>{{ todo.text }}</span>
-        <button v-on:click="removeTodo($index)">X</button>
+        <span>{{ todo.text | capitalize }}</span>
+        <span>{{ todo.status }}</span>
+        <button v-on:click="removeTask($index)">X</button>
+        <button v-on:click="doingTask($index)">D</button>
+        <button v-on:click="completeTask($index)">O</button>
       </li>
     </ul>
   </div>
+
   <script src="js/app.js"></script>
 </body>
 </html>
