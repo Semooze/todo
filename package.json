@@ -12,5 +12,8 @@
     "TODO"
   ],
   "author": "semooze",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-rename": "^1.2.2"
+  }
 }
