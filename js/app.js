@@ -19,9 +19,9 @@ new Vue({
   el: '#app',
   data: {
     newTodo: '',
-    todos: [
-      {text: 'Add some todos', status: 'do'}
-    ]
+    todos: [],
+    header: 'tester',
+    footer: 'footer'
   },
   computed: {
    all: function() {
