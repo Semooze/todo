@@ -1,55 +1,56 @@
 var filters = {
-  do: function(todos) {
-    return todo.status === 'do';
+  all: function (todos) {
+    return todos;
   },
-  doing: function(todos) {
-    return todos.filter(function(todo) {
-      return todo.status === 'doing';
+  active: function (todos) {
+    return todos.filter(function (todo) {
+      return !todo.completed;
     });
   },
-  done: function(todos) {
-    return todos.filter(function(todo) {
-      return todo.status === 'done';
+  completed: function (todos) {
+    return todos.filter(function (todo) {
+      return todo.completed;
     });
-  },
+  }
 };
 
-
 new Vue({
-  el: '#app',
+  el: '#todoapp',
   data: {
     newTodo: '',
     todos: [],
-    header: 'tester',
-    footer: 'footer'
   },
   computed: {
-   all: function() {
-     return this.todos;
-   },
-   remaining: function () {
-		return filters.do(this.todos).length;
-	 },
-   doingFilter: function() {
-    return
-   }
+    filteredTodos: function () {
+      return filters[this.visibility](this.todos);
+    },
+    remaining: function () {
+      return filters.active(this.todos).length;
+    },
+    allDone: {
+      get: function () {
+        return this.remaining === 0;
+      },
+      set: function (value) {
+        this.todos.forEach(function (todo) {
+          todo.completed = value;
+        });
+      }
+    }
   },
   methods: {
     addTask: function() {
       var text = this.newTodo.trim();
       if (text) {
-        this.todos.push({text: text, status: 'do'});
+        this.todos.push({text: text, status: 'active', createTime: new Date().getTime()});
         this.newTodo = '';
       }
     },
     removeTask: function(index) {
       this.todos.splice(index, 1);
     },
-    doingTask: function(index) {
-      this.todos[index].status = 'doing';
-    },
     completeTask: function(index) {
-      this.todos[index].status = 'done';
+      this.todos[index].status = 'completed';
     }
   }
 });
