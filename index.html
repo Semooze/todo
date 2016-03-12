@@ -38,7 +38,7 @@
         <li><a v-on:click.prevent="setVisibility('active')" :class="{selected: visibility == 'active'}">Active</a></li>
         <li><a v-on:click.prevent="setVisibility('completed')" :class="{selected: visibility == 'completed'}">Completed</a></li>
       </ul>
-      <button class="clear-completed" v-on:click="removeAllTasks" v-show="todos.length > remaining">
+      <button class="clear-completed" v-on:click="removeAllTasks" v-show="todos.length > 0">
         Clear All
       </button>
     </footer>
