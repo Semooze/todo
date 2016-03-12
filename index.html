@@ -28,7 +28,10 @@
     </section>
     <footer class="footer" v-show="todos.length" v-cloak>
       <span class="todo-count">
-        <strong v-text="remaining"></strong> {{remaining | pluralize 'item'}} left
+        <strong v-text="remaining"></strong> {{remaining | pluralize 'item'}} to do
+      </span>
+      <span class="todo-date">
+        <strong v-text="date"></strong>
       </span>
       <ul class="filters">
         <li><a v-on:click.prevent="setVisibility('all')" :class="{selected: visibility == 'all'}">All</a></li>

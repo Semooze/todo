@@ -223,6 +223,14 @@ label[for='toggle-all'] {
 .todo-count strong {
   font-weight: 300; }
 
+.todo-date {
+  margin-left: 3px;
+  float: left;
+  text-align: left; }
+
+.todo-date strong {
+  font-weight: 300; }
+
 .filters {
   margin: 0;
   padding: 0;

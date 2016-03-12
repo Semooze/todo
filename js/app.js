@@ -44,6 +44,14 @@ new Vue({
     },
     remaining: function () {
       return filters.active(this.todos).length;
+    },
+    date: function () {
+      var dateObj = new Date();
+      var date = dateObj.getDate();
+      var month = dateObj.getMonth() + 1;
+      var year = dateObj.getFullYear();
+      var result = date + '/' + month + '/' + year;
+      return result;
     }
   },
   methods: {
