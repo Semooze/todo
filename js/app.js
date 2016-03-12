@@ -82,6 +82,9 @@ new Vue({
     },
     completeTask: function(index) {
       this.todos[index].status = 'completed';
-    }
+    },
+    removeCompleted: function () {
+			this.todos = filters.active(this.todos);
+		}
   }
 });
