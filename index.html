@@ -9,6 +9,7 @@
 </head>
 <body>
   <section class="todoapp">
+    <!-- <button v-on:click="loadJsonfile(data)">Import Data</button> -->
     <header class="header">
       <h1>Todos</h1>
       <input class="new-todo" autofocus autocomplete="off" v-model="newTodo" v-on:keyup.enter="addTask" placeholder="add to do">
@@ -38,6 +39,7 @@
         Clear All
       </button>
     </footer>
+    <script src="js/storage.js"></script>
     <script src="js/app.js"></script>
   </section class="todoapp">
 </body>

@@ -31,8 +31,13 @@ new Vue({
     newTodo: '',
     todos: [],
     editedTodo: null,
-    visibility: 'all'
+    visibility: todoStorage.fetch()
   },
+  watch: {
+		visibility: {
+			handler: todoStorage.save
+		}
+	},
   computed: {
     filteredTasks: function () {
       return filters[this.visibility](this.todos);
@@ -86,6 +91,12 @@ new Vue({
     },
     setVisibility: function (value) {
       this.visibility = value;
-    }
+    },
+    // loadJsonfile: function(data) {
+    //   console.log(data);
+    //   var mydata = JSON.parse(data);
+    // 	alert(mydata[0].name);
+    // 	alert(mydata[0].age);
+    // }
   }
 });
