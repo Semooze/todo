@@ -31,9 +31,11 @@ watcher.on('change', function(event) {
 });
 
 gulp.task('sass', function () {
-  return gulp.src('./sass*.scss')
+  return gulp.src('./sass/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./css'));
 });
 
-gulp.watch('./sass/*.scss', ['sass']);
+gulp.watch('./sass/*.scss', ['sass']).on('change', function(event) {
+  console.log('File ' + event.path + ' was ' + event.type);
+});
