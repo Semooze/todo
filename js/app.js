@@ -97,7 +97,7 @@ new Vue({
     setVisibility: function (value) {
       this.visibility = value;
     },
-    loadJsonfile: function(e) {
+    importTasks: function(e) {
       var todos = this.todos;
       var files = e.target.files;
       for (var i = 0, file; file = files[i]; i++) {
