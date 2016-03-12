@@ -80,11 +80,14 @@ new Vue({
       this.editedTodo = null;
       todo.text = this.beforeEditCache;
     },
-    completeTask: function(index) {
-      this.todos[index].status = 'completed';
+    completeTask: function(todo) {
+      todo.status = 'completed';
     },
     removeCompleted: function () {
 			this.todos = filters.active(this.todos);
-		}
+		},
+    setVisibility: function (value) {
+      this.visibility = value;
+    }
   }
 });
