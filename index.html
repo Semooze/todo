@@ -9,7 +9,7 @@
 </head>
 <body>
   <section class="todoapp">
-    <!-- <button v-on:click="loadJsonfile(data)">Import Data</button> -->
+    <input type="file" id="files" name="files[]" accept=".json" v-on:change="loadJsonfile" multiple />
     <header class="header">
       <h1>Todos</h1>
       <input class="new-todo" autofocus autocomplete="off" v-model="newTodo" v-on:keyup.enter="addTask" placeholder="add to do">

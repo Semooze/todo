@@ -108,8 +108,10 @@ new Vue({
         var reader = new FileReader();
         reader.onload = function(e) {
           var data = JSON.parse(e.target.result);
-          console.log(data);
-          console.log(todos, 'todos');
+          if (!data.todos) return console.error('content format is not match');
+          data.todos.forEach(function (todo) {
+            todos.push(todo);
+          })
           todos = 5;
         };
         reader.onerror = (function(error) {
