@@ -26,7 +26,7 @@ var filters = {
 };
 
 new Vue({
-  el: '#todoapp',
+  el: '.todoapp',
   data: {
     newTodo: '',
     todos: [],

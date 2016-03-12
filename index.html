@@ -8,9 +8,9 @@
   <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
-  <section id="todoapp">
+  <section class="todoapp">
     <header class="header">
-      <h1>To dos</h1>
+      <h1>Todos</h1>
       <input class="new-todo" autofocus autocomplete="off" v-model="newTodo" v-on:keyup.enter="addTask" placeholder="add to do">
     </header>
     <section class="main" v-show="todos.length" v-cloak>
