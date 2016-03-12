@@ -15,14 +15,14 @@ gulp.task('reload', function() {
 });
 
 gulp.task('compress', function() {
-  return gulp.src('js/*.js')
+  return gulp.src('./js/*.js')
     .pipe(uglify().on('error', function(e) {
       console.log('Error message:', e.message, 'Line number:', e.lineNumber);
     }))
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('./dist/js/'));
 });
 
 var watcher = gulp.watch('./js/*.js', ['compress', 'reload']);
