@@ -5,12 +5,13 @@
     To Do application
   </title>
   <script src="js/vue.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
   <section id="todoapp">
     <header class="header">
       <h1>To dos</h1>
-      <input v-model="newTodo" v-on:keyup.enter="addTask" placeholder="add to do">
+      <input class="new-todo" v-model="newTodo" v-on:keyup.enter="addTask" placeholder="add to do">
     </header>
     <div id="app">
       <ul>
