@@ -15,7 +15,7 @@
     </header>
     <section class="main" v-show="todos.length" v-cloak>
       <ul class="todo-list">
-        <li class="todo"  v-bind:class="{'completed': todo.status === 'completed'}" v-for="todo in filteredTasks | orderBy 'createTime' -1">
+        <li class="todo"  v-bind:class="{'completed': todo.status === 'completed', editing: todo == editedTodo}" v-for="todo in filteredTasks | orderBy 'createTime' -1">
           <div class="view">
             <input class="toggle" type="checkbox" v-on:click="completeTask(todo)">
             <label v-on:dblclick="editTask(todo)">{{ todo.text }}</label>
