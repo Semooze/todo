@@ -5,24 +5,28 @@
     To Do application
   </title>
   <script src="js/vue.js"></script>
-  <!--<link rel="stylesheet" type="text/css" href="css/app.css">-->
-  <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+  <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
   <section id="todoapp">
     <header class="header">
       <h1>To dos</h1>
-      <input class="new-todo" v-model="newTodo" v-on:keyup.enter="addTask" placeholder="add to do">
+      <input class="new-todo" autofocus autocomplete="off" v-model="newTodo" v-on:keyup.enter="addTask" placeholder="add to do">
     </header>
-    <div id="app">
+    <section class="main" v-show="todos.length" v-cloak>
       <ul>
         <li v-for="todo in filteredTasks | orderBy 'createTime' -1">
-          <input class="toggle" type="checkbox" v-on:click="completeTask(todo)">
-          <label v-on:dblclick="editTask(todo)">{{ todo.text }}</label>
-          <input class="edit" type="text" v-model="todo.text" v-todo-focus="todo == editedTodo" v-on:blur="doneEdit(todo)" v-on:keyup.enter="doneEdit(todo)" v-on:keyup.esc="cancelEdit(todo)">
+          <div class="view">
+
+            <input class="toggle" type="checkbox" v-on:click="completeTask(todo)">
+            <label v-on:dblclick="editTask(todo)">{{ todo.text }}</label>
+            <button v-on:click="removeTask(todo)">X</button>
+            <input class="edit" type="text" v-model="todo.text" v-todo-focus="todo == editedTodo" v-on:blur="doneEdit(todo)" v-on:keyup.enter="doneEdit(todo)" v-on:keyup.esc="cancelEdit(todo)">
+
+          </div>
         </li>
       </ul>
-    </div>
+    </section>
     <footer class="footer" v-show="todos.length" v-cloak>
       <span class="todo-count">
         <strong v-text="remaining"></strong> {{remaining | pluralize 'item'}} left

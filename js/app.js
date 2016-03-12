@@ -39,16 +39,6 @@ new Vue({
     },
     remaining: function () {
       return filters.active(this.todos).length;
-    },
-    allDone: {
-      get: function () {
-        return this.remaining === 0;
-      },
-      set: function (value) {
-        this.todos.forEach(function (todo) {
-          todo.completed = value;
-        });
-      }
     }
   },
   methods: {
@@ -59,8 +49,16 @@ new Vue({
         this.newTodo = '';
       }
     },
-    removeTask: function(index) {
-      this.todos.splice(index, 1);
+    removeTask: function(todo) {
+      console.log('in');
+      var todos = this.todos;
+      todos.forEach(function (t, index) {
+        console.log(index, t);
+        if (todo === t) {
+          console.log('match');
+          return todos.splice(index, 1);
+        }
+      });
     },
     editTask: function (todo) {
       this.beforeEditCache = todo.text;
