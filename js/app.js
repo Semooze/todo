@@ -118,6 +118,17 @@ new Vue({
         })();
         reader.readAsText(file, 'UTF-8');
       }
+    },
+    exportTasks: function () {
+      var data = {};
+      data.todos = this.todos;
+      var a         = document.createElement('a');
+      a.href        = 'data:application/json;charset=utf-8,' +  encodeURIComponent(JSON.stringify(data));
+      a.target      = '_blank';
+      a.download    = 'todos.json';
+
+      document.body.appendChild(a);
+      a.click();
     }
   }
 });

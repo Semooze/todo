@@ -9,8 +9,10 @@
 </head>
 <body>
   <section class="todoapp">
-    <input type="file" id="files" name="files[]" accept=".json" v-on:change="exportTasks" multiple />
+    <div>
     <input type="file" id="files" name="files[]" accept=".json" v-on:change="importTasks" multiple />
+    <a  v-on:click.prevent="exportTasks">Export</a>
+    </div>
     <header class="header">
       <h1>Todos</h1>
       <input class="new-todo" autofocus autocomplete="off" v-model="newTodo" v-on:keyup.enter="addTask" placeholder="add to do">
