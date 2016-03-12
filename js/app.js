@@ -1,3 +1,14 @@
+Vue.directive('todo-focus', function (value) {
+  if (!value) {
+    return;
+  }
+  var el = this.el;
+  Vue.nextTick(function () {
+    el.focus();
+  });
+});
+
+
 var filters = {
   all: function (todos) {
     return todos;
@@ -74,26 +85,3 @@ new Vue({
     }
   }
 });
-
-// Vue.directives: {
-// 	'todo-focus': function (value) {
-// 		if (!value) {
-// 			return;
-// 		}
-// 		var el = this.el;
-// 		Vue.nextTick(function () {
-// 			el.focus();
-// 		});
-// 	}
-// }
-Vue.directive('todo-focus', {
-  function (value) {
-    if (!value) {
-      return;
-    }
-    var el = this.el;
-    Vue.nextTick(function () {
-      el.focus();
-    });
-  }
-})

@@ -18,8 +18,8 @@
           <button v-on:click="completeTask($index)">X</button>
           <!--<input type="checkbox" id="checkbox" value="completed" v-model="checked">
           <label for="checkbox">{{ checked }}</label>-->
-          <label @dblclick="editTask(todo)" @click="">{{ todo.text }}</label>
-          <input class="edit" type="text" v-model="todo.text" v-todo-focus="todo == editedTask" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)">
+          <label @dblclick="editTask(todo)">{{ todo.text }}</label>
+          <input class="edit" type="text" v-model="todo.text" v-todo-focus="todo == editedTodo" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)">
         </li>
       </ul>
     </div>
