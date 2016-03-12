@@ -14,8 +14,10 @@
   "author": "semooze",
   "license": "ISC",
   "devDependencies": {
+    "gulp": "^3.9.1",
     "gulp-livereload": "^3.8.1",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.2.0"
+    "gulp-sass": "^2.2.0",
+    "gulp-uglify": "^1.5.3"
   }
 }
