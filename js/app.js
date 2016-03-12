@@ -34,10 +34,10 @@ new Vue({
     visibility: todoStorage.fetch()
   },
   watch: {
-		visibility: {
-			handler: todoStorage.save
-		}
-	},
+    visibility: {
+      handler: todoStorage.save
+    }
+  },
   computed: {
     filteredTasks: function () {
       return filters[this.visibility](this.todos);
@@ -63,12 +63,9 @@ new Vue({
       }
     },
     removeTask: function(todo) {
-      console.log('in');
       var todos = this.todos;
       todos.forEach(function (t, index) {
-        console.log(index, t);
         if (todo === t) {
-          console.log('match');
           return todos.splice(index, 1);
         }
       });
@@ -100,11 +97,26 @@ new Vue({
     setVisibility: function (value) {
       this.visibility = value;
     },
-    // loadJsonfile: function(data) {
-    //   console.log(data);
-    //   var mydata = JSON.parse(data);
-    // 	alert(mydata[0].name);
-    // 	alert(mydata[0].age);
-    // }
+    loadJsonfile: function(e) {
+      var todos = this.todos;
+      var files = e.target.files;
+      for (var i = 0, file; file = files[i]; i++) {
+
+        if (!file.type.match('application/json')) {
+          continue;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var data = JSON.parse(e.target.result);
+          console.log(data);
+          console.log(todos, 'todos');
+          todos = 5;
+        };
+        reader.onerror = (function(error) {
+          if (error) return console.log(error);
+        })();
+        reader.readAsText(file, 'UTF-8');
+      }
+    }
   }
 });
