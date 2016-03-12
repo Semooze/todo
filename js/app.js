@@ -111,8 +111,7 @@ new Vue({
           if (!data.todos) return console.error('content format is not match');
           data.todos.forEach(function (todo) {
             todos.push(todo);
-          })
-          todos = 5;
+          });
         };
         reader.onerror = (function(error) {
           if (error) return console.log(error);
