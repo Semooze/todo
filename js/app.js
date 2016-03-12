@@ -26,12 +26,17 @@ var filters = {
 };
 
 new Vue({
-  el: '#todoapp',
+  el: '.todoapp',
   data: {
     newTodo: '',
     todos: [],
     editedTodo: null,
-    visibility: 'all'
+    visibility: todoStorage.fetch()
+  },
+  watch: {
+    visibility: {
+      handler: todoStorage.save
+    }
   },
   computed: {
     filteredTasks: function () {
@@ -40,15 +45,13 @@ new Vue({
     remaining: function () {
       return filters.active(this.todos).length;
     },
-    allDone: {
-      get: function () {
-        return this.remaining === 0;
-      },
-      set: function (value) {
-        this.todos.forEach(function (todo) {
-          todo.completed = value;
-        });
-      }
+    date: function () {
+      var dateObj = new Date();
+      var date = dateObj.getDate();
+      var month = dateObj.getMonth() + 1;
+      var year = dateObj.getFullYear();
+      var result = date + '/' + month + '/' + year;
+      return result;
     }
   },
   methods: {
@@ -59,8 +62,13 @@ new Vue({
         this.newTodo = '';
       }
     },
-    removeTask: function(index) {
-      this.todos.splice(index, 1);
+    removeTask: function(todo) {
+      var todos = this.todos;
+      todos.forEach(function (t, index) {
+        if (todo === t) {
+          return todos.splice(index, 1);
+        }
+      });
     },
     editTask: function (todo) {
       this.beforeEditCache = todo.text;
@@ -83,11 +91,44 @@ new Vue({
     completeTask: function(todo) {
       todo.status = 'completed';
     },
-    removeCompleted: function () {
-			this.todos = filters.active(this.todos);
-		},
+    removeAllTasks: function () {
+      this.todos = [];
+    },
     setVisibility: function (value) {
       this.visibility = value;
+    },
+    importTasks: function(e) {
+      var todos = this.todos;
+      var files = e.target.files;
+      for (var i = 0, file; file = files[i]; i++) {
+
+        if (!file.type.match('application/json')) {
+          continue;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var data = JSON.parse(e.target.result);
+          if (!data.todos) return console.error('content format is not match');
+          data.todos.forEach(function (todo) {
+            todos.push(todo);
+          });
+        };
+        reader.onerror = (function(error) {
+          if (error) return console.log(error);
+        })();
+        reader.readAsText(file, 'UTF-8');
+      }
+    },
+    exportTasks: function () {
+      var data = {};
+      data.todos = this.todos;
+      var a         = document.createElement('a');
+      a.href        = 'data:application/json;charset=utf-8,' +  encodeURIComponent(JSON.stringify(data));
+      a.target      = '_blank';
+      a.download    = 'todos.json';
+
+      document.body.appendChild(a);
+      a.click();
     }
   }
 });
