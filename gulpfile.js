@@ -36,6 +36,8 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./css'));
 });
 
+gulp.watch('./css/*.css', ['reload']);
+
 gulp.watch('./sass/*.scss', ['sass']).on('change', function(event) {
   console.log('File ' + event.path + ' was ' + event.type);
 });
