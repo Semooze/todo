@@ -81,9 +81,9 @@ new Vue({
     completeTask: function(todo) {
       todo.status = 'completed';
     },
-    removeCompleted: function () {
-			this.todos = filters.active(this.todos);
-		},
+    removeAllTasks: function () {
+      this.todos = [];
+    },
     setVisibility: function (value) {
       this.visibility = value;
     }
