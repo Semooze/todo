@@ -129,6 +129,26 @@ new Vue({
 
       document.body.appendChild(a);
       a.click();
+    },
+    loadTasksFromDb: function () {
+      var todos = this.todos;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+          console.log(xhttp.responseText);
+          try {
+            var datas = JSON.parse(xhttp.responseText);
+          } catch (e) {
+            console.log(e);
+          }
+          datas.forEach(function(data) {
+            data.createdTime = +data.createdTime;
+            todos.push(data);
+          });
+        }
+      };
+      xhttp.open("GET", "/tasks/load", true);
+      xhttp.send();
     }
   }
 });

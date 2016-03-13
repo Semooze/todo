@@ -89,7 +89,7 @@ $f3->route('GET /userref',
 
 $f3->route('GET /',
     function() {
-        echo View::instance()->render('index.htm');
+        echo View::instance()->render('index.html');
     }
 );
 
@@ -98,20 +98,15 @@ $f3->route('POST /tasks/save',
       echo $_SERVER['SERVER_NAME']. ':' . $_SERVER['SERVER_PORT'];
     }
 );
-$f3->route('GET /tasks/load',
-    function() {
-      echo $_SERVER['SERVER_NAME']. ':' . $_SERVER['SERVER_PORT'];
-    }
-);
 
-$f3->route('GET /test',
-    function($f3) {
-      $db = $f3->get('db');
-      $results = $db->exec('SELECT * FROM tasks');
-      $resultsJson = json_encode($results);
-      $resultsString = json_encode(array('todos' => $resultsJson), JSON_FORCE_OBJECT);
-      var_dump($resultsString);
-    }
+$f3->route('GET /tasks/load',
+  function($f3) {
+    $db = $f3->get('db');
+    $results = $db->exec('SELECT tid, text, status, createdtime AS createdTime FROM tasks');
+    $resultsJson = json_encode($results);
+    $resultsString = json_encode(array('todos' => $resultsJson), JSON_FORCE_OBJECT);
+    echo $resultsJson;
+  }
 );
 
 $f3->run();
