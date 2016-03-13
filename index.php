@@ -11,11 +11,14 @@ if ((float)PCRE_VERSION<7.9)
 $f3->config('config.ini');
 
 //config database connection
-$db=new DB\SQL(
-    'mysql:host=localhost;port=3306;dbname=todo',
-    'root',
-    '123456'
-);
+$dbHost = $f3->get('dbHost');
+$dbPort = $f3->get('dbPort');
+$dbName = $f3->get('dbName');
+$dbUsername = $f3->get('dbUsername');
+$dbPassword = $f3->get('dbPassword');
+$dbConnection = 'mysql:host='.$dbHost.';port='.$dbPort.';dbname='.$dbName;
+$db=new DB\SQL($dbConnection, $dbUsername, $dbPassword);
+
 $f3->set('db', $db);
 
 $f3->route('GET /',
