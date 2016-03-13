@@ -80,12 +80,6 @@ $f3->route('GET /',
 	}
 );
 
-$f3->route('GET /userref',
-	function($f3) {
-		$f3->set('content','userref.htm');
-		echo View::instance()->render('layout.htm');
-	}
-);
 
 $f3->route('GET /',
     function() {
@@ -94,15 +88,25 @@ $f3->route('GET /',
 );
 
 $f3->route('POST /tasks/save',
-    function() {
-      echo $_SERVER['SERVER_NAME']. ':' . $_SERVER['SERVER_PORT'];
+    function($f3) {
+      $todos = json_decode($f3->get('POST.todos'));
+      //$db->begin();
+      foreach ($todos as $todo) {
+        // $db->exec(
+        //   'INSERT INTO tasks (text, status, createdtime) VALUES (?, ?, ?)',
+        //   $todo->text, $todo->status, $todo->createTime
+        // );
+        echo gettype($todo->createTime);
+      };
+      //var_dump($todos);
+      //$db->commit();
     }
 );
 
 $f3->route('GET /tasks/load',
   function($f3) {
     $db = $f3->get('db');
-    $results = $db->exec('SELECT tid, text, status, createdtime AS createdTime FROM tasks');
+    $results = $db->exec('SELECT tid, text, status, createtime AS createTime FROM tasks');
     $resultsJson = json_encode($results);
     $resultsString = json_encode(array('todos' => $resultsJson), JSON_FORCE_OBJECT);
     echo $resultsJson;
