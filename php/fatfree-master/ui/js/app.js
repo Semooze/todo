@@ -130,11 +130,23 @@ new Vue({
       document.body.appendChild(a);
       a.click();
     },
+    saveTasksIntoDb: function () {
+      var data = JSON.stringify(this.todos);
+      var xhttp = new XMLHttpRequest();
+      xhttp.open('POST', '/tasks/save', true);
+      xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhttp.send("todos=" + data);
+      xhttp.onreadystatechange = function() {
+      	if(xhttp.readyState == 4 && xhttp.status == 200) {
+      		alert(xhttp.responseText);
+        }
+      }
+    },
     loadTasksFromDb: function () {
       var todos = this.todos;
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
+        if(xhttp.readyState == 4 && xhttp.status == 200) {
           console.log(xhttp.responseText);
           try {
             var datas = JSON.parse(xhttp.responseText);
@@ -142,12 +154,12 @@ new Vue({
             console.log(e);
           }
           datas.forEach(function(data) {
-            data.createdTime = +data.createdTime;
+            data.createTime = +data.createTime;
             todos.push(data);
           });
         }
       };
-      xhttp.open("GET", "/tasks/load", true);
+      xhttp.open('GET', '/tasks/load', true);
       xhttp.send();
     }
   }
