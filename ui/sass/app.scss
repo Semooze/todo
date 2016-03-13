@@ -207,7 +207,6 @@ label[for='toggle-all'] {
     }
 
     .destroy {
-    	display: none;
     	position: absolute;
     	top: 0;
     	right: 10px;
@@ -216,7 +215,7 @@ label[for='toggle-all'] {
     	height: 40px;
     	margin: auto 0;
     	font-size: 30px;
-    	color: #cc9a9a;
+    	color: #af5b5e;
     	margin-bottom: 11px;
     	transition: color 0.2s ease-out;
     }
@@ -250,16 +249,8 @@ label[for='toggle-all'] {
   }
 }
 
-.todo-list li .destroy:hover {
-	color: #af5b5e;
-}
-
 .todo-list li .destroy:after {
 	content: 'X';
-}
-
-.todo-list li:hover .destroy {
-	display: block;
 }
 
 .todo-list li .edit {

@@ -25,8 +25,8 @@
         <li class="todo"  v-bind:class="{'completed': todo.status === 'completed', editing: todo == editedTodo}" v-for="todo in filteredTasks | orderBy 'createTime' -1">
           <div class="view">
             <input class="toggle" type="checkbox" v-on:click="completeTask(todo)">
-            <label v-on:dblclick="editTask(todo)">{{ todo.text }}</label>
-            <button class="destroy" v-on:click="removeTask(todo)"></button>
+            <label v-on:dblclick="editTask(todo)" v-on:click="selectTask($index)">{{ todo.text }}</label>
+            <button class="destroy"  v-show="selectedTodo == $index" v-on:click="removeTask(todo)"></button>
           </div>
           <input class="edit" type="text" v-model="todo.text" v-todo-focus="todo == editedTodo" v-on:blur="doneEdit(todo)" v-on:keyup.enter="doneEdit(todo)" v-on:keyup.esc="cancelEdit(todo)">
         </li>

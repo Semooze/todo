@@ -31,7 +31,8 @@ new Vue({
     newTodo: '',
     todos: [],
     editedTodo: null,
-    visibility: todoStorage.fetch()
+    visibility: todoStorage.fetch(),
+    selectedTodo: null
   },
   watch: {
     visibility: {
@@ -70,6 +71,9 @@ new Vue({
         }
       });
     },
+    selectTask: function (index) {
+      this.selectedTodo = index;
+    },
     editTask: function (todo) {
       this.beforeEditCache = todo.text;
       this.editedTodo = todo;
@@ -95,6 +99,7 @@ new Vue({
       this.todos = [];
     },
     setVisibility: function (value) {
+      this.selectedTodo = null;
       this.visibility = value;
     },
     importTasks: function(e) {
@@ -137,8 +142,8 @@ new Vue({
       xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       xhttp.send("todos=" + data);
       xhttp.onreadystatechange = function() {
-      	if(xhttp.readyState == 4 && xhttp.status == 200) {
-      		alert(xhttp.responseText);
+        if(xhttp.readyState == 4 && xhttp.status == 200) {
+          alert(xhttp.responseText);
         }
       }
     },
