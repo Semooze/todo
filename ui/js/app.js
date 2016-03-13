@@ -113,13 +113,13 @@ new Vue({
         var reader = new FileReader();
         reader.onload = function(e) {
           var data = JSON.parse(e.target.result);
-          if (!data.todos) return console.error('content format is not match');
+          if (!data.todos) return alert('content format is not match');
           data.todos.forEach(function (todo) {
             todos.push(todo);
           });
         };
         reader.onerror = (function(error) {
-          if (error) return console.log(error);
+          if (error) return alert(error);
         })();
         reader.readAsText(file, 'UTF-8');
       }
@@ -152,11 +152,10 @@ new Vue({
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if(xhttp.readyState == 4 && xhttp.status == 200) {
-          console.log(xhttp.responseText);
           try {
             var datas = JSON.parse(xhttp.responseText);
           } catch (e) {
-            console.log(e);
+            alert(e);
           }
           datas.forEach(function(data) {
             data.createTime = +data.createTime;
