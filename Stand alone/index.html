@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    To Do application
+  </title>
+  <script src="../ui/js/vue.js"></script>
+  <link rel="stylesheet" type="text/css" href="../ui/css/app.css">
+</head>
+<body>
+  <section class="todoapp">
+    <div class="tool">
+    <label> Import </label>
+    <input type="file" id="files" name="files[]" accept=".json" v-on:change="importTasks" multiple />
+    <a  v-on:click.prevent="exportTasks">Export</a>
+    <a  v-on:click.prevent="saveTasksIntoDb">Save</a>
+    <a  v-on:click.prevent="loadTasksFromDb">Load</a>
+    </div>
+    <header class="header">
+      <h1>Todos</h1>
+      <input class="new-todo" autofocus autocomplete="off" v-model="newTodo" v-on:keyup.enter="addTask" placeholder="add to do">
+    </header>
+    <section class="main" v-show="todos.length" v-cloak>
+      <ul class="todo-list">
+        <li class="todo"  v-bind:class="{'completed': todo.status === 'completed', editing: todo == editedTodo}" v-for="todo in filteredTasks | orderBy 'createTime' -1">
+          <div class="view">
+            <input class="toggle" type="checkbox" v-on:click="completeTask(todo)" v-bind:checked="todo.status == 'completed'">
+            <label v-on:dblclick="editTask(todo)" v-on:click="selectTask($index)">{{ todo.text }}</label>
+            <button class="destroy"  v-show="selectedTodo == $index" v-on:click="removeTask(todo)"></button>
+          </div>
+          <input class="edit" type="text" v-model="todo.text" v-todo-focus="todo == editedTodo" v-on:blur="doneEdit(todo)" v-on:keyup.enter="doneEdit(todo)" v-on:keyup.esc="cancelEdit(todo)">
+        </li>
+      </ul>
+    </section>
+    <footer class="footer" v-show="todos.length" v-cloak>
+      <span class="todo-count">
+        <strong v-text="remaining"></strong> {{remaining | pluralize 'item'}} to do
+      </span>
+      <span class="todo-date">
+        <strong v-text="date"></strong>
+      </span>
+      <ul class="filters">
+        <li><a v-on:click.prevent="setVisibility('all')" :class="{selected: visibility == 'all'}">All</a></li>
+        <li><a v-on:click.prevent="setVisibility('active')" :class="{selected: visibility == 'active'}">Active</a></li>
+        <li><a v-on:click.prevent="setVisibility('completed')" :class="{selected: visibility == 'completed'}">Completed</a></li>
+      </ul>
+      <button class="clear-completed" v-on:click="removeAllTasks" v-show="todos.length > 0">
+        Clear All
+      </button>
+    </footer>
+    <script src="../ui/js/storage.js"></script>
+    <script src="../ui/js/app.js"></script>
+  </section class="todoapp">
+</body>
+</html>

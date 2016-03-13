@@ -14,10 +14,10 @@ This application has following functions:
 
 ###How to use
 
-You can use this application by download as a zip file and extract it or clone this repo. 
+You can use this application by download as a zip file and extract it or clone this repo.
 
 #### No database
-If you don't want to save and load functions you can open file index.html in ui directory by Firefox or Google Chrome. The application will load via web browser.
+If you don't want to save and load functions you can open file index.html in directory named **"Stand alone"** by Firefox or Google Chrome. The application will load via web browser.
 
 
 #### Database
@@ -26,7 +26,7 @@ In order to use save and load functions you must follow these steps:
 prerequisite
 
 php >= 5.3.6  
-MySql >= 5.6.x 
+MySql >= 5.6.x
 
 **Note:** you can use other DBMS but I use MySql in test
 
@@ -62,7 +62,7 @@ restart Apache server
 
     sudo service apache2 restart
 
-set oververride permission open your Apache configuration file for example 
+set oververride permission open your Apache configuration file for example
 */etc/apache2/sites-enabled/000-default.conf* add this code inside ```<VirtualHost *:80>``` block
 
     <Directory /var/www/html>
@@ -73,7 +73,7 @@ set oververride permission open your Apache configuration file for example
     </Directory>
 
 restart Apache server to take effect
- 
+
     sudo service apache2 restart
 
 **Note:** Don't forget to set permission of your root directory.
@@ -82,4 +82,3 @@ If you have any trouble in config Apache to use this application there is more i
 
 [how-to-set-up-mod_rewrite-for-apache-on-ubuntu-14-04](https://www.digitalocean.com/community/tutorials/how-to-set-up-mod_rewrite-for-apache-on-ubuntu-14-04)  
 [Configuration fatfreeframework for Apache](http://fatfreeframework.com/routing-engine#sample-apache-configuration)
-
