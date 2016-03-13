@@ -113,7 +113,7 @@ $f3->route('POST /tasks/save',
 $f3->route('GET /tasks/load',
   function($f3) {
     $db = $f3->get('db');
-    $results = $db->exec('SELECT tid, text, status, createtime AS createTime FROM tasks');
+    $results = $db->exec('SELECT text, status, createtime AS createTime FROM tasks');
     $resultsJson = json_encode($results);
     $resultsString = json_encode(array('todos' => $resultsJson), JSON_FORCE_OBJECT);
     echo $resultsJson;
