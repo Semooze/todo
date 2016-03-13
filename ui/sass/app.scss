@@ -35,6 +35,28 @@ body {
 	font-weight: 300;
 }
 
+.tool {
+  color: #777;
+  padding: 10px 15px;
+  height: 20px;
+  text-align: center;
+  border-top: 1px solid #e6e6e6;
+
+  a {
+    color: inherit;
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+  }
+
+  a:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+    cursor: pointer;
+  }
+}
+
 button,
 input[type="checkbox"] {
 	outline: none;
@@ -310,8 +332,13 @@ label[for='toggle-all'] {
     	border-radius: 3px;
     }
 
-    a.selected, a:hover {
+    a.selected {
     	border-color: rgba(175, 47, 47, 0.1);
+    }
+
+    a:hover {
+     border-color: rgba(175, 47, 47, 0.1);
+     cursor: pointer;
     }
 
     a.selected {

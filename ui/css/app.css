@@ -33,6 +33,23 @@ body {
   font-smoothing: antialiased;
   font-weight: 300; }
 
+.tool {
+  color: #777;
+  padding: 10px 15px;
+  height: 20px;
+  text-align: center;
+  border-top: 1px solid #e6e6e6; }
+  .tool a {
+    color: inherit;
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px; }
+  .tool a:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+    cursor: pointer; }
+
 button,
 input[type="checkbox"] {
   outline: none; }
@@ -247,8 +264,11 @@ label[for='toggle-all'] {
       text-decoration: none;
       border: 1px solid transparent;
       border-radius: 3px; }
-    .filters li a.selected, .filters li a:hover {
+    .filters li a.selected {
       border-color: rgba(175, 47, 47, 0.1); }
+    .filters li a:hover {
+      border-color: rgba(175, 47, 47, 0.1);
+      cursor: pointer; }
     .filters li a.selected {
       border-color: rgba(175, 47, 47, 0.2); }
 
