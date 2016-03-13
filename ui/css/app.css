@@ -33,6 +33,23 @@ body {
   font-smoothing: antialiased;
   font-weight: 300; }
 
+.tool {
+  color: #777;
+  padding: 10px 15px;
+  line-height: 1.4em;
+  text-align: center;
+  border-top: 1px solid #e6e6e6; }
+  .tool a {
+    color: inherit;
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px; }
+  .tool a:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+    cursor: pointer; }
+
 button,
 input[type="checkbox"] {
   outline: none; }
@@ -156,7 +173,6 @@ label[for='toggle-all'] {
       line-height: 1.2;
       transition: color 0.4s; }
     .todo-list li .destroy {
-      display: none;
       position: absolute;
       top: 0;
       right: 10px;
@@ -165,7 +181,7 @@ label[for='toggle-all'] {
       height: 40px;
       margin: auto 0;
       font-size: 30px;
-      color: #cc9a9a;
+      color: #af5b5e;
       margin-bottom: 11px;
       transition: color 0.2s ease-out; }
   .todo-list li:last-child {
@@ -184,14 +200,8 @@ label[for='toggle-all'] {
     color: #d9d9d9;
     text-decoration: line-through; }
 
-.todo-list li .destroy:hover {
-  color: #af5b5e; }
-
 .todo-list li .destroy:after {
   content: 'X'; }
-
-.todo-list li:hover .destroy {
-  display: block; }
 
 .todo-list li .edit {
   display: none; }
@@ -247,8 +257,11 @@ label[for='toggle-all'] {
       text-decoration: none;
       border: 1px solid transparent;
       border-radius: 3px; }
-    .filters li a.selected, .filters li a:hover {
+    .filters li a.selected {
       border-color: rgba(175, 47, 47, 0.1); }
+    .filters li a:hover {
+      border-color: rgba(175, 47, 47, 0.1);
+      cursor: pointer; }
     .filters li a.selected {
       border-color: rgba(175, 47, 47, 0.2); }
 

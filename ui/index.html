@@ -4,14 +4,17 @@
   <title>
     To Do application
   </title>
-  <script src="js/vue.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/app.css">
+  <script src="ui/js/vue.js"></script>
+  <link rel="stylesheet" type="text/css" href="ui/css/app.css">
 </head>
 <body>
   <section class="todoapp">
-    <div>
+    <div class="tool">
+    <label> Import </label>
     <input type="file" id="files" name="files[]" accept=".json" v-on:change="importTasks" multiple />
     <a  v-on:click.prevent="exportTasks">Export</a>
+    <a  v-on:click.prevent="saveTasksIntoDb">Save</a>
+    <a  v-on:click.prevent="loadTasksFromDb">Load</a>
     </div>
     <header class="header">
       <h1>Todos</h1>
@@ -22,8 +25,8 @@
         <li class="todo"  v-bind:class="{'completed': todo.status === 'completed', editing: todo == editedTodo}" v-for="todo in filteredTasks | orderBy 'createTime' -1">
           <div class="view">
             <input class="toggle" type="checkbox" v-on:click="completeTask(todo)">
-            <label v-on:dblclick="editTask(todo)">{{ todo.text }}</label>
-            <button class="destroy" v-on:click="removeTask(todo)"></button>
+            <label v-on:dblclick="editTask(todo)" v-on:click="selectTask($index)">{{ todo.text }}</label>
+            <button class="destroy"  v-show="selectedTodo == $index" v-on:click="removeTask(todo)"></button>
           </div>
           <input class="edit" type="text" v-model="todo.text" v-todo-focus="todo == editedTodo" v-on:blur="doneEdit(todo)" v-on:keyup.enter="doneEdit(todo)" v-on:keyup.esc="cancelEdit(todo)">
         </li>
@@ -45,8 +48,8 @@
         Clear All
       </button>
     </footer>
-    <script src="js/storage.js"></script>
-    <script src="js/app.js"></script>
+    <script src="ui/js/storage.js"></script>
+    <script src="ui/js/app.js"></script>
   </section class="todoapp">
 </body>
 </html>

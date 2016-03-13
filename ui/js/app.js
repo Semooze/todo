@@ -31,7 +31,8 @@ new Vue({
     newTodo: '',
     todos: [],
     editedTodo: null,
-    visibility: todoStorage.fetch()
+    visibility: todoStorage.fetch(),
+    selectedTodo: null
   },
   watch: {
     visibility: {
@@ -70,6 +71,9 @@ new Vue({
         }
       });
     },
+    selectTask: function (index) {
+      this.selectedTodo = index;
+    },
     editTask: function (todo) {
       this.beforeEditCache = todo.text;
       this.editedTodo = todo;
@@ -95,6 +99,7 @@ new Vue({
       this.todos = [];
     },
     setVisibility: function (value) {
+      this.selectedTodo = null;
       this.visibility = value;
     },
     importTasks: function(e) {
@@ -129,6 +134,38 @@ new Vue({
 
       document.body.appendChild(a);
       a.click();
+    },
+    saveTasksIntoDb: function () {
+      var data = JSON.stringify(this.todos);
+      var xhttp = new XMLHttpRequest();
+      xhttp.open('POST', '/tasks/save', true);
+      xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhttp.send("todos=" + data);
+      xhttp.onreadystatechange = function() {
+        if(xhttp.readyState == 4 && xhttp.status == 200) {
+          alert(xhttp.responseText);
+        }
+      }
+    },
+    loadTasksFromDb: function () {
+      var todos = this.todos;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if(xhttp.readyState == 4 && xhttp.status == 200) {
+          console.log(xhttp.responseText);
+          try {
+            var datas = JSON.parse(xhttp.responseText);
+          } catch (e) {
+            console.log(e);
+          }
+          datas.forEach(function(data) {
+            data.createTime = +data.createTime;
+            todos.push(data);
+          });
+        }
+      };
+      xhttp.open('GET', '/tasks/load', true);
+      xhttp.send();
     }
   }
 });

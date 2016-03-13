@@ -35,6 +35,28 @@ body {
 	font-weight: 300;
 }
 
+.tool {
+  color: #777;
+  padding: 10px 15px;
+  line-height: 1.4em;
+  text-align: center;
+  border-top: 1px solid #e6e6e6;
+
+  a {
+    color: inherit;
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+  }
+
+  a:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+    cursor: pointer;
+  }
+}
+
 button,
 input[type="checkbox"] {
 	outline: none;
@@ -185,7 +207,6 @@ label[for='toggle-all'] {
     }
 
     .destroy {
-    	display: none;
     	position: absolute;
     	top: 0;
     	right: 10px;
@@ -194,7 +215,7 @@ label[for='toggle-all'] {
     	height: 40px;
     	margin: auto 0;
     	font-size: 30px;
-    	color: #cc9a9a;
+    	color: #af5b5e;
     	margin-bottom: 11px;
     	transition: color 0.2s ease-out;
     }
@@ -228,16 +249,8 @@ label[for='toggle-all'] {
   }
 }
 
-.todo-list li .destroy:hover {
-	color: #af5b5e;
-}
-
 .todo-list li .destroy:after {
 	content: 'X';
-}
-
-.todo-list li:hover .destroy {
-	display: block;
 }
 
 .todo-list li .edit {
@@ -310,8 +323,13 @@ label[for='toggle-all'] {
     	border-radius: 3px;
     }
 
-    a.selected, a:hover {
+    a.selected {
     	border-color: rgba(175, 47, 47, 0.1);
+    }
+
+    a:hover {
+     border-color: rgba(175, 47, 47, 0.1);
+     cursor: pointer;
     }
 
     a.selected {
