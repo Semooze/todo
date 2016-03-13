@@ -12,7 +12,7 @@
     <div>
     <input type="file" id="files" name="files[]" accept=".json" v-on:change="importTasks" multiple />
     <a  v-on:click.prevent="exportTasks">Export</a>
-    <a  href ="/tasks/save">Save</a>
+    <a  v-on:click.prevent="saveTasksIntoDb">Save</a>
     <a  v-on:click.prevent="loadTasksFromDb">Load</a>
     </div>
     <header class="header">

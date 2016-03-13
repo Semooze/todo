@@ -90,16 +90,20 @@ $f3->route('GET /',
 $f3->route('POST /tasks/save',
     function($f3) {
       $todos = json_decode($f3->get('POST.todos'));
-      //$db->begin();
+      $db = $f3->get('db');
+      $db->begin();
       foreach ($todos as $todo) {
-        // $db->exec(
-        //   'INSERT INTO tasks (text, status, createdtime) VALUES (?, ?, ?)',
-        //   $todo->text, $todo->status, $todo->createTime
-        // );
-        echo gettype($todo->createTime);
+        $db->exec(
+          'INSERT INTO tasks (text, status, createtime) VALUES (?, ?, ?)',
+          array(
+            $todo->text,
+            $todo->status,
+            $todo->createTime
+          )
+        );
       };
-      //var_dump($todos);
-      //$db->commit();
+      $db->commit();
+      echo 'insert successfully';
     }
 );
 
