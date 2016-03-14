@@ -107,9 +107,9 @@ new Vue({
       var files = e.target.files;
       for (var i = 0, file; file = files[i]; i++) {
 
-        if (!file.type.match('application/json')) {
+        /*if (!file.type.match('application/json')) {
           continue;
-        }
+        }*/
         var reader = new FileReader();
         reader.onload = function(e) {
           var data = JSON.parse(e.target.result);
