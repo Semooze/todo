@@ -38,7 +38,7 @@ MySql >= 5.6.x
         tid int NOT NULL UNIQUE AUTO_INCREMENT,
         text varchar(255),
         status varchar(10),
-        createtime int,
+        createtime bigint unsigned,
         PRIMARY KEY (tid)
     );
     ```
